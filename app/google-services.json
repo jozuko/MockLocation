@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "857055409924",
+    "project_id": "mocklocation-301807",
+    "storage_bucket": "mocklocation-301807.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:857055409924:android:57ed01e6d215f344834251",
+        "android_client_info": {
+          "package_name": "com.studio.jozu.mocklocation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "857055409924-nqrfahjt73d1qatt5a85aa5ravbi9uhe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUbyyFdcQvfFBhjmWI1Nfhg0ymyfe28VY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "857055409924-nqrfahjt73d1qatt5a85aa5ravbi9uhe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

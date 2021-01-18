@@ -1,0 +1,100 @@
+package com.studio.jozu.mocklocation
+
+import android.Manifest
+import android.content.pm.PackageManager
+import androidx.core.content.ContextCompat
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.CameraPosition
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
+
+/**
+ * Created by r.mori on 2021/01/18.
+ * Copyright (c) 2021 rei-frontier. All rights reserved.
+ */
+class MainViewModel(private val activity: MainActivity) {
+    companion object {
+        val LOCATION_PERMISSIONS = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
+        private val TOKYO_STATION_LAT_LNG = LatLng(35.6809591, 139.7673068)
+    }
+
+    private var googleMap: GoogleMap? = null
+    var startLatLng = TOKYO_STATION_LAT_LNG
+        private set
+
+    fun getMapAsync(supportMapFragment: SupportMapFragment?) {
+        supportMapFragment ?: return
+        supportMapFragment.getMapAsync {
+            this.googleMap = it
+            googleMap?.isMyLocationEnabled = true
+            googleMap?.uiSettings?.let { uiSettings ->
+                uiSettings.isZoomControlsEnabled = true
+                uiSettings.isScrollGesturesEnabled = true
+                uiSettings.isMyLocationButtonEnabled = true
+                uiSettings.isRotateGesturesEnabled = true
+                uiSettings.isZoomGesturesEnabled = true
+                uiSettings.isIndoorLevelPickerEnabled = true
+                uiSettings.isCompassEnabled = true
+                uiSettings.isTiltGesturesEnabled = true
+            }
+
+            // 開始地点にズーム
+            resetStartPosition(startLatLng)
+            zoomToLatLng(startLatLng)
+
+            googleMap?.setOnMapClickListener { clickedLatLng -> onClickMap(clickedLatLng) }
+        }
+    }
+
+    fun hasLocationPermission(): PermissionGrantedType {
+        if (hasPermission(LOCATION_PERMISSIONS)) {
+            return PermissionGrantedType.GRANTED
+        }
+
+        return PermissionGrantedType.DENIED
+    }
+
+    private fun hasPermission(permissions: Array<String>): Boolean {
+        val grantResults = permissions.map { permission -> ContextCompat.checkSelfPermission(activity, permission) }
+            .toIntArray()
+
+        return isPermissionGranted(grantResults)
+    }
+
+    fun isPermissionGranted(grantResults: IntArray): Boolean {
+        grantResults.forEach { result ->
+            if (result != PackageManager.PERMISSION_GRANTED) {
+                return false
+            }
+        }
+        return true
+    }
+
+    private fun zoomToLatLng(latLng: LatLng) {
+        val cameraPosition = CameraPosition.Builder()
+            .target(latLng)
+            .zoom(16f)
+            .build()
+
+        googleMap?.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
+    }
+
+    private fun resetStartPosition(latLng: LatLng) {
+        val markerOptions = MarkerOptions()
+            .position(latLng)
+            .title("ここから移動開始")
+
+        startLatLng = latLng
+        googleMap?.let { map ->
+            map.clear()
+            map.addMarker(markerOptions).showInfoWindow()
+        }
+    }
+
+    private fun onClickMap(clickedLatLng: LatLng) {
+        resetStartPosition(clickedLatLng)
+        zoomToLatLng(clickedLatLng)
+    }
+}

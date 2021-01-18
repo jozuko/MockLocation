@@ -1,0 +1,61 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.google.gms.google-services'
+
+android {
+    signingConfigs {
+        debug {
+            //証明書のフィンガプリント:
+            //MD5:  D2:6F:55:05:9D:A5:9C:28:99:48:17:EE:63:81:1C:6A
+            //SHA1: 9E:8D:4D:6C:1F:8F:3D:D7:DF:40:F2:56:D1:63:32:0E:CE:B6:C0:31
+            //SHA256: 1A:28:AE:1C:81:31:B8:8F:5A:F1:2F:BB:A6:9C:E1:00:1A:49:F8:99:C4:8D:07:A8:69:54:E1:BA:E6:23:B4:CC
+            storeFile file('../keystore/mock_location.jks')
+            storePassword 'zaq1xsw2'
+            keyAlias = 'mock_location'
+            keyPassword 'zaq1xsw2'
+        }
+    }
+
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        applicationId "com.studio.jozu.mocklocation"
+        minSdkVersion 22
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'org.greenrobot:eventbus:3.2.0'
+    implementation "androidx.work:work-runtime-ktx:2.4.0"
+
+    implementation "com.google.android.gms:play-services-location:17.1.0"
+    implementation "com.google.android.gms:play-services-maps:17.0.0"
+    implementation platform('com.google.firebase:firebase-bom:26.2.0')
+}
