@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,7 +24,20 @@
         </activity>
 
         <service
-            android:name="MockLocationService"
+            android:name=".activity.MockLocationService"
+            android:exported="false" />
+
+        <receiver
+            android:name=".broadcast.LocationReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="ACTION_START_MOCK_LOCATION" />
+                <action android:name="ACTION_STOP_MOCK_LOCATION" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".broadcast.MockLocationJsonService"
             android:exported="false" />
 
         <!-- for GoogleMap -->

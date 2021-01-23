@@ -1,4 +1,4 @@
-package com.studio.jozu.mocklocation
+package com.studio.jozu.mocklocation.activity
 
 import android.content.Context
 import android.location.Location
@@ -21,10 +21,10 @@ class MockLocationWorker(context: Context, params: WorkerParameters) : Worker(co
         private const val BIKE_DISTANCE = 0.000042      // (6mくらい) 時速21.6km
         private const val CAR_DISTANCE = 0.000105      // (15mくらい) 時速54km
         private const val radius = 100
-        const val START_LOCATION_LAT = "com.studio.jozu.mocklocation.MockLocationWorker.START_LAT"
-        const val START_LOCATION_LNG = "com.studio.jozu.mocklocation.MockLocationWorker.START_LNG"
-        const val MOVE_TYPE = "com.studio.jozu.mocklocation.MockLocationWorker.MOVE_TYPE"
-        const val RADIUS = "com.studio.jozu.mocklocation.MockLocationWorker.RADIUS"
+        const val START_LOCATION_LAT = "com.studio.jozu.mocklocation.activity.MockLocationWorker.START_LAT"
+        const val START_LOCATION_LNG = "com.studio.jozu.mocklocation.activity.MockLocationWorker.START_LNG"
+        const val MOVE_TYPE = "com.studio.jozu.mocklocation.activity.MockLocationWorker.MOVE_TYPE"
+        const val RADIUS = "com.studio.jozu.mocklocation.activity.MockLocationWorker.RADIUS"
 
         fun createWorkRequest(startLat: Double, startLng: Double, moveType: Int, radius: Int): WorkRequest {
             val inputData = workDataOf(START_LOCATION_LAT to startLat, START_LOCATION_LNG to startLng, MOVE_TYPE to moveType, RADIUS to RADIUS)

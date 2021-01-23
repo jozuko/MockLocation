@@ -1,4 +1,4 @@
-package com.studio.jozu.mocklocation
+package com.studio.jozu.mocklocation.activity
 
 import android.content.Intent
 import android.os.Build
@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.SupportMapFragment
+import com.studio.jozu.mocklocation.*
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.EventBus
 

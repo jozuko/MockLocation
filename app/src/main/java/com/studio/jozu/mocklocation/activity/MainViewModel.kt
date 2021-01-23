@@ -1,4 +1,4 @@
-package com.studio.jozu.mocklocation
+package com.studio.jozu.mocklocation.activity
 
 import android.Manifest
 import android.content.pm.PackageManager
