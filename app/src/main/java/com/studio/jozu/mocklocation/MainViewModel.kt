@@ -17,11 +17,12 @@ import com.google.android.gms.maps.model.MarkerOptions
 class MainViewModel(private val activity: MainActivity) {
     companion object {
         val LOCATION_PERMISSIONS = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
-        private val TOKYO_STATION_LAT_LNG = LatLng(35.6809591, 139.7673068)
+        val TOKYO_STATION_LAT_LNG = LatLng(35.6809591, 139.7673068)
+        val HOME_LAT_LNG = LatLng(36.325704, 137.831932)
     }
 
     private var googleMap: GoogleMap? = null
-    var startLatLng = TOKYO_STATION_LAT_LNG
+    var startLatLng = HOME_LAT_LNG
         private set
 
     fun getMapAsync(supportMapFragment: SupportMapFragment?) {
@@ -42,7 +43,6 @@ class MainViewModel(private val activity: MainActivity) {
 
             // 開始地点にズーム
             resetStartPosition(startLatLng)
-            zoomToLatLng(startLatLng)
 
             googleMap?.setOnMapClickListener { clickedLatLng -> onClickMap(clickedLatLng) }
         }
@@ -81,7 +81,7 @@ class MainViewModel(private val activity: MainActivity) {
         googleMap?.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
     }
 
-    private fun resetStartPosition(latLng: LatLng) {
+    fun resetStartPosition(latLng: LatLng) {
         val markerOptions = MarkerOptions()
             .position(latLng)
             .title("ここから移動開始")
@@ -91,10 +91,10 @@ class MainViewModel(private val activity: MainActivity) {
             map.clear()
             map.addMarker(markerOptions).showInfoWindow()
         }
+        zoomToLatLng(latLng)
     }
 
     private fun onClickMap(clickedLatLng: LatLng) {
         resetStartPosition(clickedLatLng)
-        zoomToLatLng(clickedLatLng)
     }
 }

@@ -32,6 +32,8 @@ class MainActivity : AppCompatActivity() {
         setUpGoogleMap()
         setUpMoveType()
 
+        viewHomeButton.setOnClickListener { viewModel.resetStartPosition(MainViewModel.HOME_LAT_LNG) }
+        viewTokyoButton.setOnClickListener { viewModel.resetStartPosition(MainViewModel.TOKYO_STATION_LAT_LNG) }
         viewStartButton.setOnClickListener { onClickStartButton() }
         viewStopButton.setOnClickListener { onClickStopButton() }
     }

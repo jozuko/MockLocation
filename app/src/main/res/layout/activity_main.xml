@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -18,6 +19,41 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".MapsActivity" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|left"
+            android:orientation="vertical">
+
+            <com.studio.jozu.mocklocation.RoundedButton
+                android:id="@+id/viewHomeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_margin="4dp"
+                android:padding="8dp"
+                android:text="自宅"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:cardBackgroundColor="#323232"
+                app:cardCornerRadius="20dp"
+                app:rippleColor="@android:color/white" />
+
+            <com.studio.jozu.mocklocation.RoundedButton
+                android:id="@+id/viewTokyoButton"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_margin="4dp"
+                android:padding="8dp"
+                android:text="東京駅"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:cardBackgroundColor="#323232"
+                app:cardCornerRadius="20dp"
+                app:rippleColor="@android:color/white" />
+        </LinearLayout>
     </FrameLayout>
 
     <LinearLayout
@@ -37,8 +73,8 @@
             android:id="@+id/viewRadius"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:hint="移動距離：100m" />
+            android:hint="移動距離：100m"
+            android:inputType="number" />
 
     </LinearLayout>
 

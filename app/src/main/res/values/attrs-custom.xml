@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RoundedButton">
+        <attr name="android:text" />
+        <attr name="android:textSize" />
+        <attr name="android:textColor" />
+        <attr name="android:textStyle" />
+        <attr name="android:fontFamily" />
+        <attr name="android:typeface" />
+        <attr name="android:padding" />
+        <attr name="backgroundColorList" format="color|reference"/>
+        <attr name="rippleColor" format="color" />
+    </declare-styleable>
+</resources>
